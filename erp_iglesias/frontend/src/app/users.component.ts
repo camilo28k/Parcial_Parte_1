@@ -6,7 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NotificationService } from './notification.service';
-import { ApiService } from './api.service';
+import { UsersApiService } from './users-api.service';
 import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
@@ -30,14 +30,14 @@ export class UsersComponent {
     password: ['', Validators.required]
   });
 
-  constructor(private fb: FormBuilder, private api: ApiService, private notify: NotificationService) {}
+  constructor(private fb: FormBuilder, private usersApi: UsersApiService, private notify: NotificationService) {}
 
   submit() {
     if (this.form.invalid) {
       return;
     }
     const { email, password } = this.form.getRawValue();
-    this.api.createUser(email!, password!).subscribe({
+    this.usersApi.createUser(email!, password!).subscribe({
       next: () => {
         this.notify.success('Usuario creado');
         this.form.reset();
