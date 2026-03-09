@@ -3,10 +3,12 @@ package com.iglesia;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class PaymentService {
     private final PaymentRepository paymentRepository;
     private final EnrollmentRepository enrollmentRepository;
