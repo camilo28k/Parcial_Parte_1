@@ -31,7 +31,7 @@ public class PaymentController {
 
     @PreAuthorize("hasRole('ADMIN') or hasRole('CLIENT')")
     @PostMapping("/{id}/confirm")
-    public PaymentResponse confirm(@PathVariable Long id) {
+    public PaymentResponse confirm(@PathVariable("id") Long id) {
         Payment payment = paymentRepository.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pago no encontrado"));
 
@@ -55,7 +55,7 @@ public class PaymentController {
 
     @PreAuthorize("hasRole('ADMIN') or hasRole('CLIENT')")
     @PostMapping("/{id}/fail")
-    public PaymentResponse fail(@PathVariable Long id) {
+    public PaymentResponse fail(@PathVariable("id") Long id) {
         Payment payment = paymentRepository.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pago no encontrado"));
 
@@ -72,7 +72,7 @@ public class PaymentController {
 
     @PreAuthorize("hasRole('ADMIN') or hasRole('CLIENT')")
     @PostMapping("/{id}/retry")
-    public PaymentResponse retry(@PathVariable Long id) {
+    public PaymentResponse retry(@PathVariable("id") Long id) {
         Payment payment = paymentRepository.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pago no encontrado"));
 
