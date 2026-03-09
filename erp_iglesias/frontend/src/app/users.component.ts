@@ -4,7 +4,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { NotificationService } from './notification.service';
 import { ApiService } from './api.service';
 import { MatDividerModule } from '@angular/material/divider';
 
@@ -29,7 +30,7 @@ export class UsersComponent {
     password: ['', Validators.required]
   });
 
-  constructor(private fb: FormBuilder, private api: ApiService, private snack: MatSnackBar) {}
+  constructor(private fb: FormBuilder, private api: ApiService, private notify: NotificationService) {}
 
   submit() {
     if (this.form.invalid) {
@@ -38,12 +39,12 @@ export class UsersComponent {
     const { email, password } = this.form.getRawValue();
     this.api.createUser(email!, password!).subscribe({
       next: () => {
-        this.snack.open('Usuario creado', 'Cerrar', { duration: 3000 });
+        this.notify.success('Usuario creado');
         this.form.reset();
       },
       error: (err) => {
         const message = err?.error?.message || 'No se pudo crear el usuario';
-        this.snack.open(message, 'Cerrar', { duration: 3000 });
+        this.notify.error(message);
       }
     });
   }
