@@ -20,48 +20,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatSnackBarModule,
     MatDividerModule
   ],
-  template: `
-    <div class="page-header">
-      <div>
-        <h2>Usuarios</h2>
-        <p class="muted">Gestiona accesos para clientes</p>
-      </div>
-    </div>
-
-    <mat-card>
-      <h3>Crear usuario Client</h3>
-      <p class="muted">El usuario se crea con rol Client por defecto.</p>
-      <mat-divider></mat-divider>
-      <form [formGroup]="form" (ngSubmit)="submit()">
-        <mat-form-field appearance="outline">
-          <mat-label>Email</mat-label>
-          <input matInput formControlName="email" type="email" autocomplete="username" />
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Contraseña</mat-label>
-          <input matInput formControlName="password" type="password" autocomplete="new-password" />
-        </mat-form-field>
-        <div class="card-actions">
-          <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
-            Crear
-          </button>
-        </div>
-      </form>
-    </mat-card>
-  `,
-  styles: [`
-    mat-card {
-      padding: 16px;
-      max-width: 420px;
-    }
-    mat-divider {
-      margin: 8px 0 16px;
-    }
-    form {
-      display: grid;
-      gap: 12px;
-    }
-  `]
+  templateUrl: './users.component.html',
+  styleUrl: './users.component.scss'
 })
 export class UsersComponent {
   form = this.fb.group({
