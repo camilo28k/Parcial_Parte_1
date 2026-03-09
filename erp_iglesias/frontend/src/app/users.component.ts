@@ -30,7 +30,8 @@ export class UsersComponent {
     password: ['', Validators.required]
   });
 
-  constructor(private fb: FormBuilder, private usersApi: UsersApiService, private notify: NotificationService) {}
+  constructor(private fb: FormBuilder, private usersApi: UsersApiService,
+    private notify: NotificationService) {}
 
   submit() {
     if (this.form.invalid) {
